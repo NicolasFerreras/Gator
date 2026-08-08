@@ -20,6 +20,7 @@ func Execute(state *State, args []string) error {
 
 	commands := NewCommands()
 	commands.register("login", handlerLogin)
+	commands.register("register", handlerRegister)
 
 	err := commands.run(state, cmd)
 	if err != nil {
