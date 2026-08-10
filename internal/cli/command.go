@@ -1,7 +1,5 @@
 package cli
 
-import "fmt"
-
 type command struct {
 	Name string
 	args []string
@@ -21,7 +19,7 @@ func (c *Commands) run(s *State, cmd command) error { // Ejecuta el comando corr
 	if handler, exists := c.cmdMap[cmd.Name]; exists {
 		return handler(s, cmd)
 	}
-	return fmt.Errorf("unknown command: %s", cmd.Name)
+	return ErrUnknownCommand(cmd.Name)
 }
 
 func (c *Commands) register(name string, f func(*State, command) error) { // Registra un nuevo comando en el mapa de comandos
