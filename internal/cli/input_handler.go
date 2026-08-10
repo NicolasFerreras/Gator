@@ -7,7 +7,7 @@ import (
 
 func Execute(state *State, args []string) error {
 	if len(args) < 2 {
-		return fmt.Errorf("no command provided")
+		return ErrNoCommand
 	}
 
 	cmdName := strings.ToLower(args[1]) // Parseo a minusculas para evitar problemas de case-sensitive
@@ -21,6 +21,7 @@ func Execute(state *State, args []string) error {
 	commands := NewCommands()
 	commands.register("login", handlerLogin)
 	commands.register("register", handlerRegister)
+	commands.register("reset", handlerReset)
 
 	err := commands.run(state, cmd)
 	if err != nil {
