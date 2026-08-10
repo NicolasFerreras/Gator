@@ -13,24 +13,22 @@ import (
 
 func handlerRegister(state *State, cmd command) error {
 	if len(cmd.args) == 0 {
-		return fmt.Errorf("no username provided")
+		return ErrNoUsername
 	}
-	// Check if the username already exists in the database
+
 	username := cmd.args[0]
+
+	// Check if the username already exists in the database
 	existingUser, err := state.Db.GetUserByUsername(context.Background(), username)
 	if err != nil && err != sql.ErrNoRows {
-		return fmt.Errorf("failed to check existing user: %v", err)
+		return ErrDBCheckUser(err)
 	}
 
 	if err == nil && existingUser.Username != "" {
-		return fmt.Errorf("username already exists")
-	}
-	if cmd.args[0] == existingUser.Username {
-		return fmt.Errorf("username already exists")
+		return ErrUserExists
 	}
 
 	// Create a new user in the database
-
 	_, err = state.Db.CreateUser(context.Background(), database.CreateUserParams{
 		ID:        uuid.New(),
 		CreatedAt: time.Now(),
@@ -38,15 +36,15 @@ func handlerRegister(state *State, cmd command) error {
 		Username:  username,
 	})
 	if err != nil {
-		return fmt.Errorf("failed to create user: %v", err)
+		return ErrDBCreateUser(err)
 	}
 
-	fmt.Printf("Successfully registered username: %s\n", cmd.args[0])
+	fmt.Printf("Successfully registered username: %s\n", username)
 
 	// Update the current user in the config
 	err = state.Config.SetUser(username)
 	if err != nil {
-		return fmt.Errorf("failed to set user: %v", err)
+		return ErrConfigSetUser(err)
 	}
 
 	fmt.Printf("Successfully updated username to: %s\n", username)
