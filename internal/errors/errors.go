@@ -43,6 +43,8 @@ var (
 	ErrDBCreateUser = func(err error) error { return fmt.Errorf(fmtDBCreateUser, err) }
 	ErrDBGetUser    = func(err error) error { return fmt.Errorf(fmtDBGetUser, err) }
 	ErrDBGetUsers   = func(err error) error { return fmt.Errorf(fmtDBGetUsers, err) }
+	ErrDBCreateFeed = func(err error) error { return fmt.Errorf("failed to create feed: %v", err) }
+	ErrDBGetFeeds   = func(err error) error { return fmt.Errorf("failed to get feeds: %v", err) }
 
 	// Errores de configuración
 	ErrConfigSetUser     = func(err error) error { return fmt.Errorf(fmtConfigSetUser, err) }
@@ -55,4 +57,8 @@ var (
 	ErrReadingResponse = func(err error) error { return fmt.Errorf("failed to read response body: %v", err) }
 	ErrUnmarshal       = func(err error) error { return fmt.Errorf("failed to unmarshal XML: %v", err) }
 	ErrFetchFeed       = func(err error) error { return fmt.Errorf(fmtFetchFeed, err) }
+	ErrMissingFeedURL  = fmt.Errorf("missing feed URL argument")
+	ErrInvalidFeedURL  = func(err error) error {
+		return fmt.Errorf("Invalid argument, expected name then URL, but got only one argument: %v", err)
+	}
 )

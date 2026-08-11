@@ -12,18 +12,21 @@ var (
 	ErrUserExists     = errors.ErrUserExists
 	ErrUnknownCommand = errors.ErrUnknownCommand
 
-	ErrDBCheckUser       = errors.ErrDBCheckUser
-	ErrDBCreateUser      = errors.ErrDBCreateUser
-	ErrDBGetUser         = errors.ErrDBGetUser
-	ErrDBGetUsers        = errors.ErrDBGetUsers
+	ErrDBCheckUser  = errors.ErrDBCheckUser
+	ErrDBCreateUser = errors.ErrDBCreateUser
+	ErrDBGetUser    = errors.ErrDBGetUser
+	ErrDBGetUsers   = errors.ErrDBGetUsers
+	ErrDBCreateFeed = errors.ErrDBCreateFeed
+	ErrDBGetFeeds   = errors.ErrDBGetFeeds
 
-	ErrConfigSetUser     = errors.ErrConfigSetUser
-	ErrDBGetLocationArea = errors.ErrDBGetLocationArea
-	ErrNotLoggedIn       = errors.ErrNotLoggedIn
+	ErrConfigSetUser = errors.ErrConfigSetUser
+	ErrNotLoggedIn   = errors.ErrNotLoggedIn
 
 	ErrMakeRequest     = errors.ErrMakeRequest
 	ErrServer          = errors.ErrServer
 	ErrReadingResponse = errors.ErrReadingResponse
 	ErrUnmarshal       = errors.ErrUnmarshal
 	ErrFetchFeed       = errors.ErrFetchFeed
+	ErrMissingFeedURL  = errors.ErrMissingFeedURL
+	ErrInvalidFeedURL  = errors.ErrInvalidFeedURL
 )

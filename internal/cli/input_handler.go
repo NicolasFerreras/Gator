@@ -24,6 +24,8 @@ func Execute(state *State, args []string) error {
 	commands.register("reset", handlerReset)
 	commands.register("users", handlerUsers)
 	commands.register("agg", handlerAggregate)
+	commands.register("addfeed", handlerAddFeed)
+	commands.register("feeds", handlerFeeds)
 
 	err := commands.run(state, cmd)
 	if err != nil {
