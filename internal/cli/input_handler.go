@@ -26,6 +26,8 @@ func Execute(state *State, args []string) error {
 	commands.register("agg", handlerAggregate)
 	commands.register("addfeed", handlerAddFeed)
 	commands.register("feeds", handlerFeeds)
+	commands.register("follow", handlerFollow)
+	commands.register("following", handlerFollowin)
 
 	err := commands.run(state, cmd)
 	if err != nil {

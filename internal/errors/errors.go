@@ -39,17 +39,18 @@ var (
 	}
 
 	// Factories para errores envueltos con contexto DB
-	ErrDBCheckUser  = func(err error) error { return fmt.Errorf(fmtDBCheckUser, err) }
-	ErrDBCreateUser = func(err error) error { return fmt.Errorf(fmtDBCreateUser, err) }
-	ErrDBGetUser    = func(err error) error { return fmt.Errorf(fmtDBGetUser, err) }
-	ErrDBGetUsers   = func(err error) error { return fmt.Errorf(fmtDBGetUsers, err) }
-	ErrDBCreateFeed = func(err error) error { return fmt.Errorf("failed to create feed: %v", err) }
-	ErrDBGetFeeds   = func(err error) error { return fmt.Errorf("failed to get feeds: %v", err) }
+	ErrDBCheckUser        = func(err error) error { return fmt.Errorf(fmtDBCheckUser, err) }
+	ErrDBCreateUser       = func(err error) error { return fmt.Errorf(fmtDBCreateUser, err) }
+	ErrDBGetUser          = func(err error) error { return fmt.Errorf(fmtDBGetUser, err) }
+	ErrDBGetUsers         = func(err error) error { return fmt.Errorf(fmtDBGetUsers, err) }
+	ErrDBCreateFeed       = func(err error) error { return fmt.Errorf("failed to create feed: %v", err) }
+	ErrDBGetFeeds         = func(err error) error { return fmt.Errorf("failed to get feeds: %v", err) }
+	ErrDBCreateFeedFollow = func(err error) error { return fmt.Errorf("failed to create feed follow: %v", err) }
 
 	// Errores de configuración
-	ErrConfigSetUser     = func(err error) error { return fmt.Errorf(fmtConfigSetUser, err) }
-	ErrDBGetLocationArea = func(err error) error { return fmt.Errorf(fmtDBGetLocationArea, err) }
-	ErrNotLoggedIn       = fmt.Errorf(fmtNotLoggedIn)
+	ErrConfigSetUser   = func(err error) error { return fmt.Errorf(fmtConfigSetUser, err) }
+	ErrNotLoggedIn     = fmt.Errorf(fmtNotLoggedIn)
+	ErrMissingUserName = fmt.Errorf("missing username argument")
 
 	// Errores de RSS
 	ErrMakeRequest     = func(err error) error { return fmt.Errorf(fmtMakeRequest, err) }
