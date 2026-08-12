@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-func handlerFeeds(state *State, cmd command) error {
+func handlerFeeds(state *State, cmd Command) error {
 	ctx := context.Background()
 	feeds, err := state.Db.GetFeedWithUserName(ctx)
 	if err != nil {

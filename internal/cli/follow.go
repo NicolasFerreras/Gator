@@ -11,7 +11,7 @@ import (
 	"github.com/google/uuid"
 )
 
-func handlerFollow(state *State, cmd command) error {
+func handlerFollow(state *State, cmd Command, user database.User) error {
 	if len(cmd.args) < 1 {
 		return ErrMissingFeedURL
 	}
@@ -32,7 +32,7 @@ func handlerFollow(state *State, cmd command) error {
 		ID:        uuid.New(),
 		CreatedAt: time.Now(),
 		UpdatedAt: time.Now(),
-		UserID:    currentUser,
+		UserID:    user.ID,
 		FeedID:    feed.ID,
 	})
 	if err != nil {

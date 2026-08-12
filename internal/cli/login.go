@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-func handlerLogin(state *State, cmd command) error {
+func handlerLogin(state *State, cmd Command) error {
 	if len(cmd.args) == 0 {
 		return ErrNoUsername
 	}

@@ -12,7 +12,7 @@ import (
 	"github.com/google/uuid"
 )
 
-func handlerAddFeed(state *State, cmd command) error {
+func handlerAddFeed(state *State, cmd Command, user database.User) error {
 	if len(cmd.args) < 2 {
 		return ErrMissingFeedURL
 	}
@@ -21,14 +21,9 @@ func handlerAddFeed(state *State, cmd command) error {
 	if err != nil {
 		return errors.ErrInvalidFeedURL(err)
 	}
-	currentUser, err := state.Db.GetUserID(context.Background(), state.Config.CurrentUserName)
-	if err != nil {
-		return err
-	}
 
 	feedName := cmd.args[0]
 	feedURL := cmd.args[1]
-	feedUserId := currentUser
 
 	ctx := context.Background()
 	_, err = rss.FetchFeed(ctx, feedURL)
@@ -42,7 +37,7 @@ func handlerAddFeed(state *State, cmd command) error {
 		UpdatedAt: time.Now(),
 		Name:      feedName,
 		Url:       feedURL,
-		UserID:    feedUserId,
+		UserID:    user.ID,
 	})
 	if err != nil {
 		return errors.ErrDBCreateFeed(err)
@@ -58,7 +53,7 @@ func handlerAddFeed(state *State, cmd command) error {
 		CreatedAt: time.Now(),
 		UpdatedAt: time.Now(),
 		FeedID:    feed.ID,
-		UserID:    feedUserId,
+		UserID:    user.ID,
 	})
 
 	return nil

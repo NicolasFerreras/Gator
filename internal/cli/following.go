@@ -3,14 +3,13 @@ package cli
 import (
 	"context"
 	"fmt"
+
+	"github.com/NicolasFerreras/Gator/internal/database"
 )
 
-func handlerFollowin(state *State, cmd command) error {
-	currentUser, err := state.Db.GetUserID(context.Background(), state.Config.CurrentUserName)
-	if err != nil {
-		return err
-	}
-	following, err := state.Db.GetFeedFollowsForUser(context.Background(), currentUser)
+func handlerFollowin(state *State, cmd Command, user database.User) error {
+
+	following, err := state.Db.GetFeedFollowsForUser(context.Background(), user.ID)
 	if err != nil {
 		return ErrDBGetFeeds(err)
 	}
