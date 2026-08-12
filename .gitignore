@@ -11,6 +11,8 @@ bin/
 *.env
 .env
 .gatorconfig.json
+*.yaml
+database/
 
 # IDE / Editor
 .vscode/
@@ -18,6 +20,9 @@ bin/
 *.swp
 *.swo
 *~
+.opencode/
+Backlog.md
+CONTEXT.md
 
 # OS
 .DS_Store
@@ -26,7 +31,10 @@ Thumbs.db
 # Go workspace
 go.work
 go.work.sum
+go.sum
 
 # Coverage
 *.out
 coverage/
+
+
