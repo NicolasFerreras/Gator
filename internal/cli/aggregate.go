@@ -12,7 +12,7 @@ const (
 	feedURL = "https://www.wagslane.dev/index.xml"
 )
 
-func handlerAggregate(state *State, cmd command) error {
+func handlerAggregate(state *State, cmd Command) error {
 	// Check if the user is logged in
 	if state.Config.CurrentUserName == "" {
 		return errors.ErrNotLoggedIn
