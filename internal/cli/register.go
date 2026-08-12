@@ -11,7 +11,7 @@ import (
 	"github.com/google/uuid"
 )
 
-func handlerRegister(state *State, cmd command) error {
+func handlerRegister(state *State, cmd Command) error {
 	if len(cmd.args) == 0 {
 		return ErrNoUsername
 	}
