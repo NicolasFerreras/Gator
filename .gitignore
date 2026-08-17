@@ -11,7 +11,6 @@ bin/
 *.env
 .env
 .gatorconfig.json
-*.yaml
 # Solo ignora una carpeta de datos de DB a nivel raíz (si existiera).
 # NO ignorar internal/database/ (código sqlc generado, schema y queries necesarios para compilar).
 /database/
@@ -33,7 +32,6 @@ Thumbs.db
 # Go workspace
 go.work
 go.work.sum
-go.sum
 
 # Coverage
 *.out
