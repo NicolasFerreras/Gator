@@ -4,7 +4,7 @@ import (
 	"context"
 
 	"github.com/NicolasFerreras/Gator/internal/database"
-	"github.com/NicolasFerreras/Gator/internal/errors"
+	"github.com/NicolasFerreras/Gator/internal/errors_handling"
 )
 
 func handlerUnfollowFeed(state *State, cmd Command, user database.User) error {
@@ -16,7 +16,7 @@ func handlerUnfollowFeed(state *State, cmd Command, user database.User) error {
 
 	feed, err := state.Db.GetFeedByURL(context.Background(), feedURL)
 	if err != nil {
-		return errors.ErrDBGetFeeds(err)
+		return errors_handling.ErrDBGetFeeds(err)
 	}
 
 	err = state.Db.DeleteFeedFollowByUserID(context.Background(), database.DeleteFeedFollowByUserIDParams{
@@ -24,7 +24,7 @@ func handlerUnfollowFeed(state *State, cmd Command, user database.User) error {
 		FeedID: feed.ID,
 	})
 	if err != nil {
-		return errors.ErrDBDeleteFeedFollow(err)
+		return errors_handling.ErrDBDeleteFeedFollow(err)
 	}
 
 	return nil

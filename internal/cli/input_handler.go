@@ -22,6 +22,7 @@ func Execute(state *State, args []string) error {
 	}
 
 	commands := NewCommands()
+	commands.register("help", handlerHelp)
 	commands.register("login", handlerLogin)
 	commands.register("register", handlerRegister)
 	commands.register("reset", handlerReset)
@@ -32,6 +33,7 @@ func Execute(state *State, args []string) error {
 	commands.register("follow", middlewareLoggedIn(handlerFollow))
 	commands.register("following", middlewareLoggedIn(handlerFollowin))
 	commands.register("unfollow", middlewareLoggedIn(handlerUnfollowFeed))
+	commands.register("browse", handlerBrowse)
 
 	err := commands.run(state, cmd)
 	if err != nil {

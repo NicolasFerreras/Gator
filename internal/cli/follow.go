@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"github.com/NicolasFerreras/Gator/internal/database"
-	"github.com/NicolasFerreras/Gator/internal/errors"
+	"github.com/NicolasFerreras/Gator/internal/errors_handling"
 	"github.com/google/uuid"
 )
 
@@ -20,7 +20,7 @@ func handlerFollow(state *State, cmd Command, user database.User) error {
 
 	feed, err := state.Db.GetFeedByURL(context.Background(), feedURL)
 	if err != nil {
-		return errors.ErrDBGetFeeds(err)
+		return errors_handling.ErrDBGetFeeds(err)
 	}
 
 	currentUser, err := state.Db.GetUserID(context.Background(), state.Config.CurrentUserName)
@@ -36,7 +36,7 @@ func handlerFollow(state *State, cmd Command, user database.User) error {
 		FeedID:    feed.ID,
 	})
 	if err != nil {
-		return errors.ErrDBCreateFeedFollow(err)
+		return errors_handling.ErrDBCreateFeedFollow(err)
 	}
 
 	m := fmt.Sprintf(

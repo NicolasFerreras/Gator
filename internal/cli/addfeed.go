@@ -7,7 +7,8 @@ import (
 	"time"
 
 	"github.com/NicolasFerreras/Gator/internal/database"
-	"github.com/NicolasFerreras/Gator/internal/errors"
+
+	"github.com/NicolasFerreras/Gator/internal/errors_handling"
 	"github.com/NicolasFerreras/Gator/internal/rss"
 	"github.com/google/uuid"
 )
@@ -19,7 +20,7 @@ func handlerAddFeed(state *State, cmd Command, user database.User) error {
 
 	_, err := url.ParseRequestURI(cmd.args[1])
 	if err != nil {
-		return errors.ErrInvalidFeedURL(err)
+		return errors_handling.ErrInvalidFeedURL(err)
 	}
 
 	feedName := cmd.args[0]
@@ -28,7 +29,7 @@ func handlerAddFeed(state *State, cmd Command, user database.User) error {
 	ctx := context.Background()
 	_, err = rss.FetchFeed(ctx, feedURL)
 	if err != nil {
-		return errors.ErrFetchFeed(err)
+		return errors_handling.ErrFetchFeed(err)
 	}
 
 	_, err = state.Db.CreateFeed(context.Background(), database.CreateFeedParams{
@@ -40,12 +41,12 @@ func handlerAddFeed(state *State, cmd Command, user database.User) error {
 		UserID:    user.ID,
 	})
 	if err != nil {
-		return errors.ErrDBCreateFeed(err)
+		return errors_handling.ErrDBCreateFeed(err)
 	}
 
 	feed, err := state.Db.GetFeedByURL(context.Background(), feedURL)
 	if err != nil {
-		return errors.ErrDBGetFeeds(err)
+		return errors_handling.ErrDBGetFeeds(err)
 	}
 
 	_, err = state.Db.CreateFeedFollow(context.Background(), database.CreateFeedFollowParams{

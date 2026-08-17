@@ -1,4 +1,4 @@
-package errors
+package errors_handling
 
 import "fmt"
 
@@ -38,7 +38,8 @@ var (
 	ErrUnknownCommand = func(cmd string) error {
 		return fmt.Errorf(unknownCommand, cmd)
 	}
-	ErrNoArgument = fmt.Errorf(noArgument)
+	ErrNoArgument       = fmt.Errorf(noArgument)
+	ErrTooManyArguments = fmt.Errorf("too many arguments provided")
 
 	// Factories para errores envueltos con contexto DB
 	ErrDBCheckUser        = func(err error) error { return fmt.Errorf(fmtDBCheckUser, err) }
@@ -53,6 +54,7 @@ var (
 	ErrConfigSetUser   = func(err error) error { return fmt.Errorf(fmtConfigSetUser, err) }
 	ErrNotLoggedIn     = fmt.Errorf(fmtNotLoggedIn)
 	ErrMissingUserName = fmt.Errorf("missing username argument")
+	ErrInvalidLimit    = func(err error) error { return fmt.Errorf("invalid limit argument: %v", err) }
 
 	// Errores de RSS
 	ErrMakeRequest     = func(err error) error { return fmt.Errorf(fmtMakeRequest, err) }

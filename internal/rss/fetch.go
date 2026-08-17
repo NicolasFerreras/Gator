@@ -7,7 +7,7 @@ import (
 	"io"
 	"net/http"
 
-	"github.com/NicolasFerreras/Gator/internal/errors"
+	"github.com/NicolasFerreras/Gator/internal/errors_handling"
 	"github.com/NicolasFerreras/Gator/internal/models"
 )
 
@@ -15,26 +15,26 @@ func FetchFeed(ctx context.Context, feedURL string) (*models.RSSFeed, error) {
 
 	req, err := http.NewRequestWithContext(ctx, "GET", feedURL, nil)
 	if err != nil {
-		return nil, errors.ErrMakeRequest(err)
+		return nil, errors_handling.ErrMakeRequest(err)
 	}
 	req.Header.Set("User-Agent", "gator")
 
 	client := &http.Client{}
 	resp, err := client.Do(req)
 	if err != nil {
-		return nil, errors.ErrServer(err)
+		return nil, errors_handling.ErrServer(err)
 	}
 	defer resp.Body.Close()
 
 	data, err := io.ReadAll(resp.Body)
 	if err != nil {
-		return nil, errors.ErrReadingResponse(err)
+		return nil, errors_handling.ErrReadingResponse(err)
 	}
 
 	var feed models.RSSFeed
 	err = xml.Unmarshal(data, &feed)
 	if err != nil {
-		return nil, errors.ErrUnmarshal(err)
+		return nil, errors_handling.ErrUnmarshal(err)
 	}
 
 	feed.Channel.Title = html.UnescapeString(feed.Channel.Title)
