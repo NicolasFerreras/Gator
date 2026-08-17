@@ -12,7 +12,9 @@ bin/
 .env
 .gatorconfig.json
 *.yaml
-database/
+# Solo ignora una carpeta de datos de DB a nivel raíz (si existiera).
+# NO ignorar internal/database/ (código sqlc generado, schema y queries necesarios para compilar).
+/database/
 
 # IDE / Editor
 .vscode/
