@@ -11,22 +11,22 @@ const (
 	unknownCommand = "unknown command: %s"
 
 	// Errores de base de datos (formato)
-	fmtDBCheckUser       = "failed to check existing user: %w"
-	fmtDBCreateUser      = "failed to create user: %w"
-	fmtDBGetUser         = "failed to get user: %v"
-	fmtDBGetUsers        = "failed to get users: %v"
-	fmtDBGetLocationArea = "failed to get location area: %v"
+	fmtDBCheckUser  = "failed to check existing user: %w"
+	fmtDBCreateUser = "failed to create user: %w"
+	fmtDBGetUser    = "failed to get user: %v"
+	fmtDBGetUsers   = "failed to get users: %v"
 
 	// Errores de configuración
 	fmtConfigSetUser = "failed to set user: %v"
 	fmtNotLoggedIn   = "no user is currently logged in"
 
 	// Errores de RSS
-	fmtMakeRequest     = "failed to make HTTP request: %v"
-	fmtServer          = "server error: %v"
-	fmtReadingResponse = "failed to read response body: %v"
-	fmtUnmarshal       = "failed to unmarshal XML: %v"
-	fmtFetchFeed       = "failed to fetch feed: %v"
+	fmtMakeRequest        = "failed to make HTTP request: %v"
+	fmtServer             = "server error: %v"
+	fmtReadingResponse    = "failed to read response body: %v"
+	fmtUnmarshal          = "failed to unmarshal XML: %v"
+	fmtFetchFeed          = "failed to fetch feed: %v"
+	fmtDBDeleteFeedFollow = "failed to delete feed follow: %v"
 )
 
 // Variables de error predefinidas para uso directo
@@ -62,4 +62,5 @@ var (
 	ErrInvalidFeedURL  = func(err error) error {
 		return fmt.Errorf("Invalid argument, expected name then URL, but got only one argument: %v", err)
 	}
+	ErrDBDeleteFeedFollow = func(err error) error { return fmt.Errorf("failed to delete feed follow: %v", err) }
 )

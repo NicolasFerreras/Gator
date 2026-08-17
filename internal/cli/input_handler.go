@@ -31,6 +31,7 @@ func Execute(state *State, args []string) error {
 	commands.register("feeds", handlerFeeds)
 	commands.register("follow", middlewareLoggedIn(handlerFollow))
 	commands.register("following", middlewareLoggedIn(handlerFollowin))
+	commands.register("unfollow", middlewareLoggedIn(handlerUnfollowFeed))
 
 	err := commands.run(state, cmd)
 	if err != nil {

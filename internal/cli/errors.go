@@ -24,11 +24,12 @@ var (
 	ErrNotLoggedIn     = errors.ErrNotLoggedIn
 	ErrMissingUserName = errors.ErrMissingUserName
 
-	ErrMakeRequest     = errors.ErrMakeRequest
-	ErrServer          = errors.ErrServer
-	ErrReadingResponse = errors.ErrReadingResponse
-	ErrUnmarshal       = errors.ErrUnmarshal
-	ErrFetchFeed       = errors.ErrFetchFeed
-	ErrMissingFeedURL  = errors.ErrMissingFeedURL
-	ErrInvalidFeedURL  = errors.ErrInvalidFeedURL
+	ErrMakeRequest        = errors.ErrMakeRequest
+	ErrServer             = errors.ErrServer
+	ErrReadingResponse    = errors.ErrReadingResponse
+	ErrUnmarshal          = errors.ErrUnmarshal
+	ErrFetchFeed          = errors.ErrFetchFeed
+	ErrMissingFeedURL     = errors.ErrMissingFeedURL
+	ErrInvalidFeedURL     = errors.ErrInvalidFeedURL
+	ErrDBDeleteFeedFollow = errors.ErrDBDeleteFeedFollow
 )
