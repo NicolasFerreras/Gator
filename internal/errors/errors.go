@@ -9,6 +9,7 @@ const (
 	noCommandMsg   = "no command provided"
 	userExistsMsg  = "username already exists"
 	unknownCommand = "unknown command: %s"
+	noArgument     = "No argument provided"
 
 	// Errores de base de datos (formato)
 	fmtDBCheckUser  = "failed to check existing user: %w"
@@ -37,6 +38,7 @@ var (
 	ErrUnknownCommand = func(cmd string) error {
 		return fmt.Errorf(unknownCommand, cmd)
 	}
+	ErrNoArgument = fmt.Errorf(noArgument)
 
 	// Factories para errores envueltos con contexto DB
 	ErrDBCheckUser        = func(err error) error { return fmt.Errorf(fmtDBCheckUser, err) }

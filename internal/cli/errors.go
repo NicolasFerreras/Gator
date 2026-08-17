@@ -11,6 +11,7 @@ var (
 	ErrNoCommand      = errors.ErrNoCommand
 	ErrUserExists     = errors.ErrUserExists
 	ErrUnknownCommand = errors.ErrUnknownCommand
+	ErrNoArgument     = errors.ErrNoArgument
 
 	ErrDBCheckUser        = errors.ErrDBCheckUser
 	ErrDBCreateUser       = errors.ErrDBCreateUser
