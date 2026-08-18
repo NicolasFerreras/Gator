@@ -117,7 +117,7 @@ el enrutado de comandos es propio y liviano.
 - **Configuración (`internal/config`)** — lectura/escritura de `.gatorconfig.json`.
 - **Modelos / DTOs (`internal/models`)** — estructuras de transporte (`RSSFeed`).
 
-**Patrones de diseño identificados:**
+**Patrones de diseño:**
 - **Command Pattern** — `Commands` mantiene un mapa `cmdMap` de
   `nombre → handler`; `register` da de alta y `run` despacha por nombre.
 - **Middleware / Decorator (higher-order function)** — `middlewareLoggedIn`
